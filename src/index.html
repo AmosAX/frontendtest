@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>The Chatt Application</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styling.css">
-    <script src="index.js"></script>
+<head>
+  <title>The Chatt Application</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styling.css">
+  <script src="index.js"></script>
 </head>
 <main>
-  <form action="">
-    <label for="message">Enter your message:</label><br>
-    <input type="text" id="message" name="message" value=""><br>
-    <input type="submit" value="Submit">
-    <button type="button">Click Me!</button> 
-    <br>
-</form> 
+  <label for="message">Enter your message:</label><br>
+  <input type="text" id="message" name="message" value=""><br>
+  <input type="submit" value="Submit">
+  <button type="button" onclick="sendMessage('hej')">Click Me!</button> 
+  <br>
 
-<p><label for="chatlog">The current chatlog:</label></p>
-<textarea id="chatlog" name="chatlog" rows="4" cols="50">"Currently this is empty"</textarea>
+
+  <p><label for="chatlog">The current chatlog:</label></p>
+  <div id="testdiv">
+    <textarea id="chatlog" name="chatlog" readonly>"Currently this is empty"</textarea>
+  </div>
+  
 
 </main>
 
 <article>
   <h2>News from the dev team</h2>
   <p>We just added a few buttons</p>
-  </article>
+</article>
 
-  <footer>
-    <p>This was made by Amos </p>
-    <p><a href="mailto:hege@example.com">Contact me!</a></p>
-  </footer> 
-  </html> 
+<footer>
+  <p>This was made by Amos </p>
+  <p><a href="mailto:hege@example.com">Contact me!</a></p>
+</footer> 
+</html> 
