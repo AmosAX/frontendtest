@@ -7,7 +7,7 @@ textarea {
     margin-right: 7px;
     margin-bottom: 1px;
     padding: 5px;
-    width: 373px;
+    width: 333px;
   }
 
 .chatbackground{
@@ -22,12 +22,17 @@ textarea {
 }
 
 .inputmessage{
-  margin: 7px;
+  margin: 10px;
 }
 
-.innerdiv{
+.inputdiv{
   position: absolute;
-  height:max-content;
-  width: 100%;
   bottom: 0;
+  max-height: 100%;
+}
+
+.messagebox{
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

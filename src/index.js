@@ -5,6 +5,7 @@ function sendMessage(){
     if(message.value != ""){
 
         const para = document.createElement("textarea");
+        para.readOnly = true;
     
 
         const node = document.createTextNode(message.value);
@@ -12,9 +13,12 @@ function sendMessage(){
         
         para.appendChild(node);
     
-        const element = document.getElementById("testdiv");
+        const element = document.getElementById("messagebox");
         element.appendChild(rowbreak);
         element.appendChild(para);
+
+        //scrolls away the oldest  messages
+        element.scrollTop = element.scrollHeight;
     
         message.value = "";
     }
