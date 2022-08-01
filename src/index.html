@@ -7,17 +7,18 @@
   <script src="index.js"></script>
 </head>
 <main>
-  <label for="message">Enter your message:</label><br>
-  <input type="text" id="message" name="message" value=""><br>
-  <input type="submit" value="Submit">
-  <button type="button" onclick="sendMessage('hej')">Click Me!</button> 
-  <br>
 
-
-  <p><label for="chatlog">The current chatlog:</label></p>
-  <div id="testdiv">
-    <textarea id="chatlog" name="chatlog" readonly>"Currently this is empty"</textarea>
+  <div class = "chatbackground">
+    <div class = "innerdiv">
+      <div class = "messagebox" id = "testdiv">
+        <textarea id="chatlog" name="chatlog" readonly>"This is the first message"</textarea>
+      </div>
+      <br>
+      <input class = "inputmessage" type="text" id="message" name="message" value="">
+      <button type="button" onclick="sendMessage()">Send</button><br>
+    </div>
   </div>
+
   
 
 </main>

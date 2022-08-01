@@ -1,18 +1,24 @@
 function sendMessage(){
 
-    const para = document.createElement("textarea");
-    const message = document.getElementById("message").value;
+    const message = document.getElementById("message");
 
-    const node = document.createTextNode(message);
-    const rowbreak = document.createElement("br");
-    
-    para.appendChild(node);
+    if(message.value != ""){
 
-    const element = document.getElementById("testdiv");
-    element.appendChild(rowbreak);
-    element.appendChild(para);
+        const para = document.createElement("textarea");
     
 
+        const node = document.createTextNode(message.value);
+        const rowbreak = document.createElement("br");
+        
+        para.appendChild(node);
     
+        const element = document.getElementById("testdiv");
+        element.appendChild(rowbreak);
+        element.appendChild(para);
+    
+        message.value = "";
+    }
+
+
 
 }
