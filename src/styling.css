@@ -36,3 +36,25 @@ textarea {
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+.grid {
+  display: grid;
+
+
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+
+  
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.gridnews {
+
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+
+  grid-column-start: 2; 
+}
