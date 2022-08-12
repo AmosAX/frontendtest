@@ -4,6 +4,8 @@ const APIUrl = "https://ha-slutuppgift-chat-do.westling.workers.dev";
 const APIMessages =
   "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages";
 
+const MessageSender = "AA&EB";
+
 function sendMessage() {
   const message = document.getElementById("message");
 
@@ -51,5 +53,22 @@ async function getMessagesFromAPI() {
     }
   )
     .then((x) => x.text())
+
+    //Here we need to put a for loop
+
     .then((y) => (document.getElementById("chatlog").innerHTML = y));
+}
+
+function sendMessageToAPI() {
+  fetch(APIMessages, {
+    method: "POST",
+    headers: {
+      Accept: "application.json",
+      "Content-Type": "application/json",
+      Authorization:
+        "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+    },
+    body: JSON.stringify(message),
+    Cache: "default",
+  });
 }
