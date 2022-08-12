@@ -60,15 +60,29 @@ async function getMessagesFromAPI() {
 }
 
 function sendMessageToAPI() {
-  fetch(APIMessages, {
-    method: "POST",
-    headers: {
-      Accept: "application.json",
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
-    },
-    body: JSON.stringify(message),
-    Cache: "default",
-  });
+  const messageToSend = document.getElementById("message").value;
+  const data = {
+    user: "AA&&EB",
+    message: document.getElementById("message").value,
+  };
+
+  fetch(
+    "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/append",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+      },
+      body: JSON.stringify(data),
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
