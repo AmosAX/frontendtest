@@ -10,23 +10,30 @@ function sendMessage() {
   const message = document.getElementById("message");
 
   if (message.value != "") {
-    const para = document.createElement("textarea");
-    para.readOnly = true;
 
-    const node = document.createTextNode(message.value);
-    const rowbreak = document.createElement("br");
-
-    para.appendChild(node);
-
-    const element = document.getElementById("messagebox");
-    element.appendChild(rowbreak);
-    element.appendChild(para);
-
-    //scrolls away the oldest  messages
-    element.scrollTop = element.scrollHeight;
+    addMessage(message.value);
 
     message.value = "";
   }
+}
+
+function addMessage(text) {
+
+  const para = document.createElement("textarea");
+  para.readOnly = true;
+
+  const node = document.createTextNode(text);
+  const rowbreak = document.createElement("br");
+
+  para.appendChild(node);
+
+  const element = document.getElementById("messagebox");
+  element.appendChild(rowbreak);
+  element.appendChild(para);
+
+  //scrolls away the oldest  messages
+  element.scrollTop = element.scrollHeight;
+
 }
 /*
 function getMessagesFromAPI() {
@@ -42,7 +49,7 @@ function getMessagesFromAPI() {
 */
 
 async function getMessagesFromAPI() {
-  let x = fetch(
+  fetch(
     "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages",
     {
       method: "get",
@@ -52,12 +59,22 @@ async function getMessagesFromAPI() {
       },
     }
   )
-    .then((x) => x.text())
-
+    .then((x) => x.json())
     //Here we need to put a for loop
 
-    .then((y) => (document.getElementById("chatlog").innerHTML = y));
+    .then((data) => {
+
+      var messages = data["messages"];
+
+      for (m of messages){
+        addMessage(JSON.stringify(m["message"]));
+      }
+
+
+
+    });
 }
+
 
 function sendMessageToAPI() {
   fetch(APIMessages, {
