@@ -11,24 +11,28 @@ function sendMessage() {
 
   if (message.value != "") {
 
-    addMessage(message.value);
+    addMessage(message.value, MessageSender);
 
     message.value = "";
   }
 }
 
-function addMessage(text) {
+function addMessage(text, username) {
 
   const para = document.createElement("textarea");
   para.readOnly = true;
 
+
+  const user = document.createElement("p");
+  user.className = "user";
+  user.innerHTML = username;
+
   const node = document.createTextNode(text);
-  const rowbreak = document.createElement("br");
 
   para.appendChild(node);
 
   const element = document.getElementById("messagebox");
-  element.appendChild(rowbreak);
+  element.appendChild(user);
   element.appendChild(para);
 
   //scrolls away the oldest  messages
@@ -67,7 +71,7 @@ async function getMessagesFromAPI() {
       var messages = data["messages"];
 
       for (m of messages){
-        addMessage(JSON.stringify(m["message"]));
+        addMessage(JSON.stringify(m["message"]), JSON.stringify(m["user"]));
       }
 
 
@@ -77,9 +81,9 @@ async function getMessagesFromAPI() {
 
 
 function sendMessageToAPI() {
-  const messageToSend = document.getElementById("message").value;
+  
   const data = {
-    user: "AA&&EB",
+    user: MessageSender,
     message: document.getElementById("message").value,
   };
 

@@ -4,7 +4,6 @@ textarea {
     
     border-radius: 10px;
     margin-left: 7px;
-    margin-top: 7px;
     margin-right: 7px;
     margin-bottom: 1px;
     padding: 5px;
@@ -62,6 +61,15 @@ textarea {
   border-style: solid;
 
   grid-column-start: 4; 
+}
+
+.user {
+  color:rgb(2, 10, 87);
+  font-size: 10px;
+  margin-left:20px;
+  margin-bottom: 1px;
+  margin-top: 4px;
+  
 }
 
 @keyframes newMessage {
