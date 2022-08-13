@@ -71,7 +71,7 @@ async function getMessagesFromAPI() {
       var messages = data["messages"];
 
       for (m of messages){
-        addMessage(JSON.stringify(m["message"]), JSON.stringify(m["user"]));
+        addMessage(JSON.stringify(m["message"]), JSON.stringify(m["user"]).replaceAll("\"",''));
       }
 
 
