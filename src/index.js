@@ -12,6 +12,7 @@ function sendMessage() {
   if (message.value != "") {
 
     addMessage(message.value, MessageSender);
+    sendMessageToAPI();
 
     message.value = "";
   }
@@ -39,18 +40,6 @@ function addMessage(text, username) {
   element.scrollTop = element.scrollHeight;
 
 }
-/*
-function getMessagesFromAPI() {
-  fetch(APIUrl)
-    .then((response) => {
-      console.log("This is working"); // handle the response
-    })
-    .catch((error) => {
-      console.log("This is NOT working");
-      // handle the error
-    });
-}
-*/
 
 async function getMessagesFromAPI() {
   fetch(
@@ -71,7 +60,7 @@ async function getMessagesFromAPI() {
       var messages = data["messages"];
 
       for (m of messages){
-        addMessage(JSON.stringify(m["message"]), JSON.stringify(m["user"]).replaceAll("\"",''));
+        addMessage((JSON.stringify(m["message"]).replaceAll('\"','')), JSON.stringify(m["user"]).replaceAll("\"",''));
       }
 
 

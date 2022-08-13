@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="styling.css">
   <script src="index.js"></script>
 </head>
+<body onload="getMessagesFromAPI()">
 
 <div class="grid"> 
 <main>
@@ -22,7 +23,7 @@
       <br>
       <input class = "inputmessage" type="text" id="message" name="message" value="">
       <button type="button" onclick="sendMessage()">Send</button><br>
-      <button type="button" onclick="sendMessageToAPI()">SendToAPI</button><br>
+      <!--<button type="button" onclick="sendMessageToAPI()">SendToAPI</button><br>-->
     </div>
   </div>
 
@@ -33,7 +34,7 @@
 <article class = "gridnews">
   <h2>News from the dev team</h2>
   <p>We just added a few buttons</p>
-  <button id = "testbutton" type="button" onclick="getMessagesFromAPI()">TEST CLICK</button><br>
+  <!--<button id = "testbutton" type="button" onclick="getMessagesFromAPI()">TEST CLICK</button><br>-->
 </article>
 
 </div>
