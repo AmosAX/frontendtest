@@ -1,13 +1,21 @@
+
+:root{
+  --main-border-color: #e08098;
+  --main-background-color: #e5c0c9;
+  --skyblue: rgb(155, 231, 241);
+}
+
+
 textarea {
     resize: none;
-    background-color: rgb(155, 231, 241);
+    background-color: var(--skyblue);
     
     border-radius: 10px;
     margin-left: 7px;
     margin-right: 7px;
     margin-bottom: 1px;
     padding: 5px;
-    width: 333px;
+    width: 90%;
     animation-name: newMessage;
     animation-duration: 0.5s;
   }
@@ -15,18 +23,25 @@ textarea {
 
 
 .chatbackground{
-  background-color: #e5c0c9;
-  border-color: #e08098;
+  background-color: var(--main-background-color);
+  border-color: var(--main-border-color);
   border-width: 2px;
   border-style: solid;
   border-radius: 10px;
-  width: 400px;
-  height: 600px;
+  width: 100%;
+  height: 30%;
   position: relative;
 }
 
 .inputmessage{
   margin: 10px;
+}
+
+.refresh{
+
+  background-color: var(--skyblue);
+  border-radius: 10px;
+  
 }
 
 .inputdiv{
@@ -43,24 +58,15 @@ textarea {
 
 .grid {
   display: grid;
+  width: 100%;
+  height:600px;
 
+  grid-template-columns: 50% 20%;
 
-  border-color: #000000;
-  border-width: 2px;
-  border-style: solid;
-
-  
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
 .gridnews {
-
-  border-color: #000000;
-  border-width: 2px;
-  border-style: solid;
-
-  grid-column-start: 4; 
+  grid-column-start: 3;
 }
 
 .user {

@@ -11,11 +11,35 @@ function sendMessage() {
 
   if (message.value != "") {
 
-    addMessage(message.value, MessageSender);
+    appendMessage(message.value, MessageSender);
     sendMessageToAPI();
 
     message.value = "";
   }
+}
+
+function appendMessage(text, username){
+
+  const para = document.createElement("textarea");
+  para.readOnly = true;
+
+
+  const user = document.createElement("p");
+  user.className = "user";
+  user.innerHTML = username;
+
+  const node = document.createTextNode(text);
+
+  para.appendChild(node);
+
+  const element = document.getElementById("messagebox");
+
+  element.appendChild(user);
+  element.appendChild(para);
+  
+
+  element.scrollTop = element.scrollHeight;
+
 }
 
 function addMessage(text, username) {
@@ -33,8 +57,9 @@ function addMessage(text, username) {
   para.appendChild(node);
 
   const element = document.getElementById("messagebox");
-  element.appendChild(user);
-  element.appendChild(para);
+
+  element.prepend(para);
+  element.prepend(user);
 
   //scrolls away the oldest  messages
   element.scrollTop = element.scrollHeight;
@@ -60,6 +85,7 @@ async function getMessagesFromAPI() {
       var messages = data["messages"];
 
       for (m of messages){
+        //this could be template literals
         addMessage((JSON.stringify(m["message"]).replaceAll('\"','')), JSON.stringify(m["user"]).replaceAll("\"",''));
       }
 
@@ -95,4 +121,9 @@ function sendMessageToAPI() {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+function refreshChat(){
+  document.getElementById("messagebox").innerHTML="";
+  getMessagesFromAPI();
 }
