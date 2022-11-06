@@ -10,7 +10,6 @@ function sendMessage() {
   const message = document.getElementById("message");
 
   if (message.value != "") {
-
     appendMessage(message.value, MessageSender);
     sendMessageToAPI();
 
@@ -24,7 +23,6 @@ function appendMessage(text, username){
   para.className += "mess";
   para.readOnly = true;
 
-
   const user = document.createElement("p");
   user.className = "user";
   user.innerHTML = username;
@@ -37,10 +35,8 @@ function appendMessage(text, username){
 
   element.appendChild(user);
   element.appendChild(para);
-  
 
   element.scrollTop = element.scrollHeight;
-
 }
 
 function addMessage(text, username) {
@@ -48,7 +44,6 @@ function addMessage(text, username) {
   const para = document.createElement("p");
   para.className += "mess";
   para.readOnly = true;
-
 
   const user = document.createElement("p");
   user.className = "user";
@@ -65,40 +60,33 @@ function addMessage(text, username) {
 
   //scrolls away the oldest  messages
   element.scrollTop = element.scrollHeight;
-
 }
 
 async function getMessagesFromAPI() {
-  fetch(
-    "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages",
-    {
-      method: "get",
-      headers: {
-        Authorization:
-          "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
-      },
-    }
-  )
+  fetch("https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages", {
+    method: "get",
+    headers: {
+      Authorization:
+        "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+    },
+  })
     .then((x) => x.json())
     //Here we need to put a for loop
 
     .then((data) => {
-
       var messages = data["messages"];
 
-      for (m of messages){
+      for (m of messages) {
         //this could be template literals
-        addMessage((JSON.stringify(m["message"]).replaceAll('\"','')), JSON.stringify(m["user"]).replaceAll("\"",''));
+        addMessage(
+          JSON.stringify(m["message"]).replaceAll('"', ""),
+          JSON.stringify(m["user"]).replaceAll('"', "")
+        );
       }
-
-
-
     });
 }
 
-
 function sendMessageToAPI() {
-  
   const data = {
     user: MessageSender,
     message: document.getElementById("message").value,
@@ -125,7 +113,7 @@ function sendMessageToAPI() {
     });
 }
 
-function refreshChat(){
-  document.getElementById("messagebox").innerHTML="";
+function refreshChat() {
+  document.getElementById("messagebox").innerHTML = "";
   getMessagesFromAPI();
 }
