@@ -3,13 +3,17 @@
 <head>
   <title>The Chatt Application</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styling.css">
   <script src="index.js"></script>
 </head>
 <body onload="getMessagesFromAPI()">
 
+ <h1>En chatapplikation</h1>
+
 <div class="grid"> 
 <main>
+  <h2>Här syns alla meddelanden</h2>
 
   <div class = "chatbackground">
     
@@ -33,15 +37,16 @@
 
 <article class = "gridnews">
   <h2>News from the dev team</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <p style = "text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   <!--<button id = "testbutton" type="button" onclick="getMessagesFromAPI()">TEST CLICK</button><br>-->
 </article>
 
 </div>
 
 
-<footer>
+<footer style = "text-align: end;">
   <p>This was made by Amos & ErikB </p>
   <p><a href="mailto:hege@example.com">Contact me!</a></p>
 </footer> 
+</body>
 </html> 

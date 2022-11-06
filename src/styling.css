@@ -5,12 +5,23 @@
   --skyblue: rgb(155, 231, 241);
 }
 
+h1{
+  text-align: center;
+  background-color: var(--skyblue);
+  border-radius: 10px;
+}
 
-textarea {
+h2{
+  text-align: center;
+}
+
+.mess {
     resize: none;
     background-color: var(--skyblue);
-    
+    border-color: rgb(0, 140, 255);
+    border-style: solid;
     border-radius: 10px;
+    border-width: 2px;
     margin-left: 7px;
     margin-right: 7px;
     margin-bottom: 1px;

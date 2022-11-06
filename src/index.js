@@ -20,7 +20,8 @@ function sendMessage() {
 
 function appendMessage(text, username){
 
-  const para = document.createElement("textarea");
+  const para = document.createElement("p");
+  para.className += "mess";
   para.readOnly = true;
 
 
@@ -44,7 +45,8 @@ function appendMessage(text, username){
 
 function addMessage(text, username) {
 
-  const para = document.createElement("textarea");
+  const para = document.createElement("p");
+  para.className += "mess";
   para.readOnly = true;
 
 
