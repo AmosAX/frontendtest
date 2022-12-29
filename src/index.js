@@ -4,14 +4,19 @@ const APIUrl = "https://ha-slutuppgift-chat-do.westling.workers.dev";
 const APIMessages =
   "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages";
 
+const APIAppend = "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/append";
+
 const MessageSender = "AA&EB";
 
 function sendMessage() {
   const message = document.getElementById("message");
 
   if (message.value != "") {
-    appendMessage(message.value, MessageSender);
-    sendMessageToAPI();
+    const element = document.getElementById("messagebox");
+    element.appendChild(
+    appendMessage(message.value, MessageSender)
+    );
+    element.scrollTop = element.scrollHeight;ageToAPI();
 
     message.value = "";
   }
@@ -27,47 +32,26 @@ function appendMessage(text, username){
   user.className = "user";
   user.innerHTML = username;
 
-  const node = document.createTextNode(text);
-
-  para.appendChild(node);
-
-  const element = document.getElementById("messagebox");
-
-  element.appendChild(user);
-  element.appendChild(para);
-
-  element.scrollTop = element.scrollHeight;
-}
-
-function addMessage(text, username) {
-
-  const para = document.createElement("p");
-  para.className += "mess";
-  para.readOnly = true;
-
-  const user = document.createElement("p");
-  user.className = "user";
-  user.innerHTML = username;
+  const linebreak = document.createElement("br");
 
   const node = document.createTextNode(text);
 
   para.appendChild(node);
+  user.prepend(linebreak);
 
-  const element = document.getElementById("messagebox");
+  const div = document.createElement("div");
 
-  element.prepend(para);
-  element.prepend(user);
-
-  //scrolls away the oldest  messages
-  element.scrollTop = element.scrollHeight;
+  div.appendChild(user);
+  div.appendChild(para);
+  return div;
 }
 
 async function getMessagesFromAPI() {
-  fetch("https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages", {
+  fetch(APIMessages, {
     method: "get",
     headers: {
       Authorization:
-        "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+        APIToken,
     },
   })
     .then((x) => x.json())
@@ -75,14 +59,19 @@ async function getMessagesFromAPI() {
 
     .then((data) => {
       var messages = data["messages"];
+      const frag = document.createDocumentFragment();
 
       for (m of messages) {
         //this could be template literals
-        addMessage(
+        frag.prepend(
+        appendMessage(
           JSON.stringify(m["message"]).replaceAll('"', ""),
           JSON.stringify(m["user"]).replaceAll('"', "")
-        );
+        ));
       }
+      const element = document.getElementById("messagebox");
+      element.append(frag);
+      element.scrollTop = element.scrollHeight;
     });
 }
 
@@ -93,13 +82,13 @@ function sendMessageToAPI() {
   };
 
   fetch(
-    "https://ha-slutuppgift-chat-do.westling.workers.dev/api/messages/append",
+    APIAppend,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer N31fRWVMZCtwU0JeZnBQdVBjTmlOImRzcTAxfl08cz1xR2lyWGFJfmo5JC5RNSc=",
+          APIToken,
       },
       body: JSON.stringify(data),
     }
